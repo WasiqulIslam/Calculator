@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
-//Development started by Wasiqul Islam at 19.05/2023
+import 'calculator.dart';
+
+//Development started by Wasiqul Islam at 19/05/2023
 //Link used for UI design: https://www.codementor.io/@akki7272/build-calculator-app-ui-using-basic-flutter-widgets-uoegag35o
 
 void main() {
@@ -34,12 +36,14 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: CalculatorPage(),
+      home: const CalculatorPage(),
     );
   }
 }
 
 class CalculatorPage extends StatefulWidget {
+  const CalculatorPage({super.key});
+
   @override
   State<CalculatorPage> createState() => _CalculatorPageState();
 
@@ -54,16 +58,32 @@ class CalculatorPage extends StatefulWidget {
 }
 
 class _CalculatorPageState extends State<CalculatorPage> {
+  var textEditingController = TextEditingController();
+  late Calculator calculator;
+
+  _CalculatorPageState() {
+    textEditingController.text = "";
+    calculator = Calculator(textEditingController);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.black,
-      child: Column(
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Calculator"),
+      ),
+      body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Flexible(
             flex: 3,
-            child: Container(color: Colors.black),
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                enabled: false,
+              ),
+              controller: textEditingController,
+            ),
           ),
           Flexible(
             flex: 5,
@@ -83,28 +103,28 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("C")},
                               child: const Text("C"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("+/-")},
                               child: const Text("+/-"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("%")},
                               child: const Text("%"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("\u00F7")},
                               child: const Text("\u00F7"),
                             ),
                           ),
@@ -123,29 +143,29 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("7")},
                               child: const Text("7"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("8")},
                               child: const Text("8"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("9")},
                               child: const Text("9"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
-                              child: const Text("X"),
+                              onPressed: () => {calculator.calculate("\u00D7")},
+                              child: const Text("\u00D7"),
                             ),
                           ),
                         ],
@@ -163,28 +183,28 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("4")},
                               child: const Text("4"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("5")},
                               child: const Text("5"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("6")},
                               child: const Text("6"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("-")},
                               child: const Text("-"),
                             ),
                           ),
@@ -203,28 +223,28 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("1")},
                               child: const Text("1"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("2")},
                               child: const Text("2"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("3")},
                               child: const Text("3"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("+")},
                               child: const Text("+"),
                             ),
                           ),
@@ -243,22 +263,22 @@ class _CalculatorPageState extends State<CalculatorPage> {
                           Flexible(
                             flex: 2,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate("0")},
                               child: const Text("0"),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
+                              onPressed: () => {calculator.calculate(".")},
                               child: const Text("."),
                             ),
                           ),
                           Flexible(
                             flex: 1,
                             child: TextButton(
-                              onPressed: () => {},
-                              child: const Text(""),
+                              onPressed: () => {calculator.calculate("=")},
+                              child: const Text("="),
                             ),
                           ),
                         ],
