@@ -1,3 +1,3 @@
 # calculator
 
-A functional calculator for Android.
+A functional calculator for Android developed in Flutter (Dart language).
